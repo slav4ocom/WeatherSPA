@@ -1,0 +1,41 @@
+#sofia {
+    position: absolute;
+    left: 138px;
+    top: 250px;
+}
+
+#tarnovo {
+    position: absolute;
+    left: 400px;
+    top: 200px;
+}
+
+#pleven {
+    position: absolute;
+    left: 290px;
+    top: 160px;
+}
+
+#ruse {
+    position: absolute;
+    left: 430px;
+    top: 105px;
+}
+
+#plovdiv {
+    position: absolute;
+    left: 300px;
+    top: 350px;
+}
+
+#varna {
+    position: absolute;
+    left: 650px;
+    top: 200px;
+}
+
+#burgas {
+    position: absolute;
+    left: 600px;
+    top: 300px;
+}

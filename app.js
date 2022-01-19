@@ -4,8 +4,9 @@ function ReadTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("application/json");
     rawFile.open("GET", file, true);
-    rawFile.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
-    rawFile.setRequestHeader("X-RapidAPI-Key", apiKey);
+    //rawFile.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
+    //rawFile.setRequestHeader("X-RapidAPI-Key", apiKey);
+    //rawFile.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     rawFile.timeout = 0;
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4 && rawFile.status == "200") {
@@ -28,7 +29,7 @@ function ShowResponse(cityName, containerName) {
     //var container = document.getElementById('containerName');
     var container = document.getElementById('varna');
     var data;
-    ReadTextFile("https://community-open-weather-map.p.rapidapi.com/weather?q=" + cityName + "&lat=0&lon=0&id=2172797&lang=null&units=metric&mode=json",
+    ReadTextFile("http://localhost:17424/weatherforecast",
         function (text) {
             data = JSON.parse(text);
             console.log(data.weather[0].icon);

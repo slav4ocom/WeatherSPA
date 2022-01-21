@@ -23,7 +23,6 @@ function FillTextContainer(textData) {
     container.innerHTML = textData;
 }
 
-console.log(document.getElementById('varna').innerHTML);
 
 function ShowResponse(cityName, containerName) {
     //var container = document.getElementById('containerName');
@@ -43,5 +42,15 @@ function SetCityImage(cityName, imageName) {
     var city = document.getElementById(cityName);
     var image = city.getElementsByTagName('img')[0];
     image.setAttribute('src', imageName);
-    console.log(image);
+    //console.log(image);
+}
+
+function SetCityData() {
+    SetCityImage('sofia', '01n.png');
+    SetCityImage('plovdiv', '01n.png');
+    SetCityImage('varna', '01n.png');
+    SetCityImage('burgas', '01n.png');
+    SetCityImage('ruse', '01n.png');
+    SetCityImage('pleven', '01n.png');
+    SetCityImage('tarnovo', '01n.png');
 }

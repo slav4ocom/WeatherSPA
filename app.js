@@ -7,6 +7,7 @@ function ReadTextFile(file, callback) {
     //rawFile.setRequestHeader("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com");
     //rawFile.setRequestHeader("X-RapidAPI-Key", apiKey);
     //rawFile.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    //rawFile.setRequestHeader("Cache-Control", "no-cache");
     rawFile.timeout = 0;
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4 && rawFile.status == "200") {
@@ -15,7 +16,6 @@ function ReadTextFile(file, callback) {
     }
     rawFile.send();
 }
-
 
 
 function FillTextContainer(textData) {
@@ -29,13 +29,19 @@ function ShowResponse(cityName, containerName) {
     //var container = document.getElementById('containerName');
     var container = document.getElementById('varna');
     var data;
-    ReadTextFile("http://localhost:17424/weatherforecast",
+    //ReadTextFile("http://localhost:17424/weatherforecast",
+    ReadTextFile("http://192.168.0.107:8080/weather",
         function (text) {
             data = JSON.parse(text);
             console.log(data.weather[0].icon);
-            //container.innerHTML = data.main.temp;
             container.innerHTML = "<img src=" + data.weather[0].icon + ".png>" + cityName;
-            //container.innerHTML = "callback";
         });
 
+}
+
+function SetCityImage(cityName, imageName) {
+    var city = document.getElementById(cityName);
+    var image = city.getElementsByTagName('img')[0];
+    image.setAttribute('src', imageName);
+    console.log(image);
 }

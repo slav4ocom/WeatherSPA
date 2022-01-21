@@ -29,7 +29,7 @@ function ShowResponse(cityName, containerName) {
     var container = document.getElementById('varna');
     var data;
     //ReadTextFile("http://localhost:17424/weatherforecast",
-    ReadTextFile("http://192.168.0.107:8080/weather",
+    ReadTextFile("http://192.168.0.107:8080/showdata/sofia,bg",
         function (text) {
             data = JSON.parse(text);
             console.log(data.weather[0].icon);
@@ -38,19 +38,31 @@ function ShowResponse(cityName, containerName) {
 
 }
 
-function SetCityImage(cityName, imageName) {
-    var city = document.getElementById(cityName);
-    var image = city.getElementsByTagName('img')[0];
-    image.setAttribute('src', imageName);
-    //console.log(image);
+
+function SetCityData(cityName) {
+    var data;
+    ReadTextFile("http://192.168.0.107:8080/showdata/" + cityName + ",bg",
+        function (text) {
+            data = JSON.parse(text);
+            //console.log(data.main.temp);
+            var icon = data.weather[0].icon;
+            var city = document.getElementById(cityName);
+            var image = city.getElementsByTagName('img')[0];
+            var temp = city.getElementsByTagName('div')[0];
+            temp.innerHTML = Math.round(data.main.temp);
+            //console.log(temp);
+            image.setAttribute('src', 'nice_icons/' + icon + '.png');
+        }
+    );
+
 }
 
-function SetCityData() {
-    SetCityImage('sofia', '01n.png');
-    SetCityImage('plovdiv', '01n.png');
-    SetCityImage('varna', '01n.png');
-    SetCityImage('burgas', '01n.png');
-    SetCityImage('ruse', '01n.png');
-    SetCityImage('pleven', '01n.png');
-    SetCityImage('tarnovo', '01n.png');
+function SetCitiesData() {
+    const cities = ['sofia', 'plovdiv', 'varna', 'bourgas', 'rousse', 'pleven', 'tarnovo'];
+    var timeout = 0;
+    cities.forEach(element => {
+        setTimeout(SetCityData, timeout += 100, element);
+    });
 }
+
+setInterval(SetCitiesData, 1 * 60 * 1000);

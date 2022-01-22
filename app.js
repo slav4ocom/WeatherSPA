@@ -51,7 +51,7 @@ function SetCityData(cityName) {
             var temp = city.getElementsByTagName('div')[0];
             temp.innerHTML = Math.round(data.main.temp);
             //console.log(temp);
-            image.setAttribute('src', 'nice_icons/' + icon + '.png');
+            image.setAttribute('src', 'icons/' + icon + '.png');
         }
     );
 

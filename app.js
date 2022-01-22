@@ -18,27 +18,6 @@ function ReadTextFile(file, callback) {
 }
 
 
-function FillTextContainer(textData) {
-    var container = document.getElementById('tex-container');
-    container.innerHTML = textData;
-}
-
-
-function ShowResponse(cityName, containerName) {
-    //var container = document.getElementById('containerName');
-    var container = document.getElementById('varna');
-    var data;
-    //ReadTextFile("http://localhost:17424/weatherforecast",
-    ReadTextFile("http://192.168.0.107:8080/showdata/sofia,bg",
-        function (text) {
-            data = JSON.parse(text);
-            console.log(data.weather[0].icon);
-            container.innerHTML = "<img src=" + data.weather[0].icon + ".png>" + cityName;
-        });
-
-}
-
-
 function SetCityData(cityName) {
     var data;
     ReadTextFile("http://192.168.0.107:8080/showdata/" + cityName + ",bg",
@@ -65,4 +44,5 @@ function SetCitiesData() {
     });
 }
 
+SetCitiesData();
 setInterval(SetCitiesData, 1 * 60 * 1000);
